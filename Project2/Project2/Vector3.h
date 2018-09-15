@@ -4,25 +4,24 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <iostream>
 
 using namespace std;
 
 
+template <class T> 
 class Vec3 {
+	T x;
+	T y;
+	T z;
+   
+public:
     
-    public:
-    
-         unsigned int x;
-		 unsigned int y;
-		 unsigned int z;
-           
-      
-
         // CONSTRUCTORS //
 
     
         
-        Vec3(unsigned int vx, unsigned int vy, unsigned int vz) {
+        Vec3(T vx, T vy, T vz) {
             x = vx;
             y = vy;
             z = vz;
