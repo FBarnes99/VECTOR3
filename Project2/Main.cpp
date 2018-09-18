@@ -1,7 +1,8 @@
-#include <stdlib.h>
+
 #include "Vector3.h"
-#include <math.h>
 #include <iostream>
+
+using namespace std;
 
 int main() {
 

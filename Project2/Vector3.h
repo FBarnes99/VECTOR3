@@ -2,11 +2,7 @@
 #ifndef _VECTOR3_H_
 #define _VECTOR3_H_
 
-#include <stdlib.h>
-#include <math.h>
-#include <iostream>
 
-using namespace std;
 
 
 template <class T> 
@@ -21,83 +17,70 @@ public:
 
     
         
-        Vec3(const T& vx, const T& vy, const T& vz) {
-            x = vx;
-            y = vy;
-            z = vz;
-        }
+        Vec3(const T& vx, const T& vy, const T& vz): x(vx),
+		y (vy),
+		z (vz) {}
 
         // Copy constructor
-        Vec3(const Vec3& V) {
-            x = V.x;
-            y = V.y;
-            z = V.z;
+        Vec3(const Vec3& V) : x(V.x), y (V.y), z(V.z) {
         }
 
-		Vec3() {
-
-			x = 0;
-			y = 0;
-			z = 0;
-
-		}
+		Vec3() {}
 
         // OPERATORS //
         
 		//new vector with the values added//
-        Vec3 operator+(const Vec3& v2) {
+        Vec3 operator+(const Vec3& v2)const {
             return Vec3(x + v2.x, y + v2.y, z + v2.z);
         }
+
 		//same vector with the values added//
-        Vec3& operator+=(const Vec3& v2) {
+		Vec3& operator+=(const Vec3& v2) {
             x += v2.x;
             y += v2.y;
             z += v2.z;
-            return *this;
+			return *this;
         }  
 		
 		//new vector with the values subtratced//
-        Vec3 operator-(const Vec3& v2) {
+        Vec3 operator-(const Vec3& v2)const {
             return Vec3(x - v2.x, y - v2.y, z - v2.z);
         }
 		
 		//same vector with the values subtratced//
-        Vec3& operator-=(const Vec3 &v2) {
+       Vec3& operator-=(const Vec3 &v2) {
             x -= v2.x;
             y -= v2.y;
             z -= v2.z;
-            return *this;
+			return *this;
         }
 
 		//assign vector//
 
-		Vec3 operator=( Vec3& v2) {
+		void operator=( Vec3& v2) {
 
-			v2.x = this->x;
-			v2.y = this->y;
-			v2.z = this->z;
+			x = v2.x;
+			y = v2.y;
+			z = v2.z;
 		}
 		
 		
 		//compare vectors//
 
-		bool operator==(const Vec3 v2) {
-			if (x == v2.x&&
-				y == v2.y&&
-				z == v2.z) {
-				return true;
-
-			}
-			return false ;
+		bool operator==(const Vec3 v2) const {
+			return (x == v2.x &&
+					y == v2.y &&
+					z == v2.z) 
+		
 		}
 
       
 
        
-        // Distance //
-        float distance_to() {
+        // Module //
+        double Module() {
             
-			return sqrt(this->x ^ 2 + this->y ^ 2 + this->z ^ 2);
+			return sqrt(x ^ 2 + y ^ 2 + z ^ 2);
         }
 
 
@@ -113,22 +96,28 @@ public:
         }
 
         //set the vector at zero //
-		bool is_zero() {
-			
-			if (this->x == 0 &&
+		bool is_zero()const {
+
+			return (this->x == 0 &&
 				this->y == 0 &&
-				this->z == 0) {
+				this->z == 0)
+		}
 
-				return true;
-			}
+		float distance_to(Vec3* V2) const {
+			float dist;
 
-			return false;
+			float dx = V2->x - x;
+			float dy = V2->y - y;
+			float dz = V2->z - z; ç
+
+				distance = sqrt(dx ^ 2 + dy ^ 2 + dz ^ 2);
+			return abs(distance);
 		}
 
         // normalize de vector //
         Vec3& normalize() {
            
-			float ñe = distance_to();
+			double ñe = Module();
             
 			this->x = this->x / ñe;
 			this->y = this->y / ñe;
