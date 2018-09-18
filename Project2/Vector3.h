@@ -21,7 +21,7 @@ public:
 
     
         
-        Vec3(T vx, T vy, T vz) {
+        Vec3(const T& vx, const T& vy, const T& vz) {
             x = vx;
             y = vy;
             z = vz;
@@ -57,7 +57,7 @@ public:
         }  
 		
 		//new vector with the values subtratced//
-        Vec3 operator-(const Vec3 v2) {
+        Vec3 operator-(const Vec3& v2) {
             return Vec3(x - v2.x, y - v2.y, z - v2.z);
         }
 		
